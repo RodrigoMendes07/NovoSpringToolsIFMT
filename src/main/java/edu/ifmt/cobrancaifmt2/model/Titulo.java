@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 @Entity
 public class Titulo {
 	
@@ -19,13 +22,13 @@ public class Titulo {
 		@GeneratedValue(strategy = GenerationType.IDENTITY) // Estrategia fica por conta do BD
 		private Long codigo;		
 		private String descricao;
+		@DateTimeFormat(pattern = "dd/MM/yyyy")
 		@Temporal(TemporalType.DATE) // Só Data
 		private Date dataVencimento;
+		@NumberFormat(pattern = "#,##0.00")
 		private BigDecimal valor;
 		@Enumerated(EnumType.STRING) // Salvara no BD String
-		private StatusTitulo status;
-		
-		
+		private StatusTitulo status;	
 		
 		public Long getCodigo() {
 			return codigo;
@@ -81,6 +84,6 @@ public class Titulo {
 			} else if (!codigo.equals(other.codigo))
 				return false;
 			return true;
+			
 		}	
-		
 }

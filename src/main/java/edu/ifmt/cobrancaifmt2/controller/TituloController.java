@@ -1,9 +1,12 @@
 package edu.ifmt.cobrancaifmt2.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+import edu.ifmt.cobrancaifmt2.Titulos;
 import edu.ifmt.cobrancaifmt2.model.Titulo;
 
 @Controller // Anotação que controla o Spring
@@ -16,7 +19,16 @@ public class TituloController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void salvar(Titulo titulo) {
+	public String salvar(Titulo titulo) {
+		
+			titulos.save(titulo);		
+			
+			return"CadastroTitulo";
 			
 	}
+	
+	
+	@Autowired // Anotação que ira injetar dependencias. 
+	public Titulos titulos;
+	
 }
